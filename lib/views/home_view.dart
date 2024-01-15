@@ -27,7 +27,7 @@ class HomeView extends StatelessWidget {
                 SizedBox(width: 10,),
                 GestureDetector(
                   onTap: () {
-                    print('képre van kattintva');
+                    print('Képre van kattintva');
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
