@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-class EditDetailsViewController extends GetxController{
+class NewSeriesViewController extends GetxController{
   TextEditingController titleController = TextEditingController();
   String title = "Assassin";
-  int seasons = 12;
+  int seasons = 1;
   String coverImage="https://assets.mubicdn.net/images/notebook/post_images/19893/images-w1400.jpg?1449196747";
 
   void noveles(){
@@ -25,7 +25,6 @@ class EditDetailsViewController extends GetxController{
     titleController.text=title;
     titleController.addListener(() {
       title = titleController.text;
-      update();
     });
   }
 }

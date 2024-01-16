@@ -1,16 +1,16 @@
-import 'dart:ui';
-
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movie_mania/controllers/edit_details_view_controller.dart';
+import 'package:movie_mania/controllers/new_series_view_controller.dart';
 
-class EditDetailsView extends StatelessWidget {
-  EditDetailsViewController controller = Get.put(EditDetailsViewController());
+class NewSeriesView extends StatelessWidget {
+  NewSeriesViewController controller = Get.put(NewSeriesViewController());
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<EditDetailsViewController>(
+    return GetBuilder<NewSeriesViewController>(
         init: controller,
         builder: (_) {
           return Scaffold(
@@ -18,7 +18,7 @@ class EditDetailsView extends StatelessWidget {
             appBar: AppBar(
               backgroundColor: Colors.black,
               title: Text(
-                controller.title,
+                "Add new series",
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
               centerTitle: true,
@@ -35,7 +35,11 @@ class EditDetailsView extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 20,right: 20,top: 20,),
+                    padding: EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                      top: 20,
+                    ),
                     child: TextField(
                       controller: controller.titleController,
                       style: TextStyle(
@@ -62,25 +66,38 @@ class EditDetailsView extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.all(20.0),
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        AspectRatio(
-                          aspectRatio: 2.0 / 3.0,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: Image.network(
-                              controller.coverImage,
-                              fit: BoxFit.cover,
+                    child: AspectRatio(
+                      aspectRatio: 2.0 / 3.0,
+                      child: DottedBorder(
+                        borderType: BorderType.RRect,
+                        radius: Radius.circular(12),
+                        dashPattern: [6],
+                        color: Colors.white,
+                        strokeWidth: 3,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
+                          child: Container(
+                            child: Center(
+                              child: Icon(
+                                Icons.photo_size_select_actual_rounded,
+                                color: Colors.grey,
+                                size: 60,
+                              ),
                             ),
                           ),
                         ),
-                        CupertinoButton.filled(
-                          child: Text("Upload Image"),
-                          onPressed: () {},
-                        ),
-                      ],
+                      ),
                     ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  CupertinoButton.filled(
+                    child: Text("Upload Image"),
+                    onPressed: () {},
+                  ),
+                  SizedBox(
+                    height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -121,21 +138,9 @@ class EditDetailsView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(20),
-                    child: Container(
-                      width: double.infinity,
-                      child: CupertinoButton(
-                        padding: EdgeInsets.zero,
-                        color: Colors.red,
-                        child: Padding(
-                          padding: EdgeInsets.all(15),
-                          child: Text("Delete Series"),
-                        ),
-                        onPressed: () {},
-                      ),
-                    ),
-                  )
+                  SizedBox(
+                    height: 20,
+                  ),
                 ],
               ),
             ),
